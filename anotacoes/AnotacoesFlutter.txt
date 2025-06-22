@@ -1,0 +1,162 @@
+Projeto no caminho: C:\Users\HomePC\Documents\Projetos\Flutter\todo-list\todo_list_provider
+Link youtube: https://www.youtube.com/watch?v=XgFXqFbXYyY&list=PLghcszZb1b98ARzAorbKDeYY0MJywof7p
+================================================================================================================
+Vídeo 1 não teve conteúdo relevante 
+================================================================================================================
+Vídeo 2 segue anotações: 
+Anotações do flutter. 
+
+Comando para criar um projeto em flutter: 
+	-> flutter create todo_list_provider --platforms=ios,android --org=br.com.flutterdicas.todolistproviderfelipe
+	
+Comando para ver a versão do flutter: 
+	-> flutter --version
+	 
+O arquivo pubspec.yaml onde é descrito algumas informações do app.
+Ele usa esse arquivo para colocar as dependencias. 
+Obs.: Tem que estar identado. 
+
+=> O provider adicionado como dependencias, é usado para gerenciar os estados e dependencias.
+=>	O uuid: vai ser usado para criar identificares, ou seja id que serão utilizados na aplicação.
+=>	O flutter_secure_storage: vai ser usado para manter o estado do aplicativo, ou seja manter os dados, mesma
+	que seja encerrada a aplicação;
+=>	O flutter_localizations: vai ser usado para traduzir o calendário para o portugês do brasil;
+
+Exemplo: 
+dependencies:
+  provider: ^6.0.5
+  uuid: ^3.0.7 
+  flutter_secure_storage: ^8.0.0
+  flutter_localizations:
+    sdk: ^3.0.7
+  flutter:
+    sdk: flutter
+Comando para atualizar as dependencias é 
+ ->	flutter pub get.
+ ================================================================================================================
+ Video 3 segue anotações:
+ 
+ Ele mostra como tratar um problema de versão, porém para mim o erro não foi o mesmo. 
+ 
+ Deve ser colocado a aplicação a executar com um demo para depois ser trocado. 
+ 
+ Comando para a começar a exeuctar
+ 	-> flutter run;
+ 
+ O problema foi o abaixo. 
+our project is configured with Android NDK 26.3.11579264, but the following plugin(s) depend on a different Android NDK version:
+- flutter_secure_storage requires Android NDK 27.0.12077973
+Fix this issue by using the highest Android NDK version (they are backward compatible).
+Add the following to C:\Users\HomePC\Documents\Projetos\Flutter\todo-list\todo_list_provider\android\app\build.gradle.kts:
+
+    android {
+        ndkVersion = "27.0.12077973"
+        ...
+    }
+warning: [options] target value 8 is obsolete and will be removed in a future release
+warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+3 warnings
+	
+Logo fui no arquivo build.gradle.kts e alterei 
+
+De: 
+android {
+    namespace = "br.com.flutterdicas.todolistproviderfelipe.todo_list_provider"
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = flutter.ndkVersion 
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+Para: 
+
+android {
+    namespace = "br.com.flutterdicas.todolistproviderfelipe.todo_list_provider"
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = "27.0.12077973"
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+E está rodando tranquilamente o contador inicial do flutter para verificação.
+================================================================================================================
+Vídeo 4: Segue anotações:
+
+Ele mostra que o arquivo da aplicação fica no lib/maijn.dart, e explica como tudo é 
+widget. e inclusive a soma do contador.
+
+================================================================================================================
+0 Vídeo 5: Anotações
+
+- Ele apaga no main.dart da linha 38 até o fim. Para começar o projeto. 
+- Ele cria dentro da lib os diretórios features\todos\screens e cria o arquivo 
+todos_screen.dart. 
+- Ele baixa a extensão flutter dicas para facilitar no comando fd-stateless. 
+Onde cria todo o import, conforme abaixo. 
+
+import 'package:flutter/material.dart';
+
+class TodosScreen extends StatelessWidget {
+  const TodosScreen({super.key});
+  
+  @override
+  Widget build(BuildContext context) {
+    return ;
+  }
+}
+
+- Após isso ele codifica todo o pacote, para um texto 
+e criar um botão. 
+- Após isso ele muda no main.dart para o home: constTodosScreen(),
+e recompilamos a aplicação usando o R. 
+- Após iss ele estilizada a cores do APP; 
+- E mosra como colocar a linguagem;
+
+================================================================================================================
+Vídeo 6: Anotações
+
+Nesse vídeo ele começa explicando que vai criar um 
+modelo para ficar mais fácil. 
+
+Logo ele cria uma pasta shared\models dentro da lib e o arquivo 
+todo_model.dart.	
+
+OBSERVAÇÃO: ELE VAI FAZER O CÓDIGO EM INGLÊS, MAS O 
+VISUAL PARA O USUÁRIO SERÁ EM PORTUGÊS.
+
+Ele programa todo o todo_model, para usar no todo_screen. 
+Com o código abaixo: 
+import 'package:uuid/uuid.dart';
+
+class TodoModel {
+  final String id;
+  final String title;
+  final String? description; /*? significa que pode ser nulo*/
+  final DateTime date;
+
+  TodoModel({
+    String? cId,
+    required this.title,
+    this.description, //Sem o required, não é obrigatório.
+    DateTime? cDate,
+  }) : id = cId ?? const Uuid().v4(),
+       date = cDate ?? DateTime.now();
+}
+Após isso ele cria a pasta widgets, usando o model, 
+para cada elemento que será utilizado. 
+Como título, checkbox, descrição e data. 
+
+================================================================================================================
+Vídeo 07: Anotação 
+
+Nesse vídeo ele cria um componente text_widget, padrão para centralizar as configurações de 
+texto, cor e etc..., assim facilitando a hora de ajustes e mudanças para mudar em um lugar só.
+
+Obs.: Ele exclui nesse vídeo a pasta de teste, porque não vai ser usada.
+
+
+C:\Users\HomePC\Documents\Projetos\Flutter\todo-list\todo_list_provider\lib\shared\widgets\text\text_widget.dart

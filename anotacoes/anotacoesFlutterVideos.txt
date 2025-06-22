@@ -1,0 +1,30 @@
+== Video 1 - Flutter na prática todo list
+ 
+Apenas introdução 
+
+== Video 2 - Flutter na prática todo list
+ 
+Ele mostra como começar o projeto e como atualizar as denpendências. 
+
+
+== Vídeo 3 - Flutter na prática todo list
+
+Ele mostra como tratar um problema de versão, porém para mim não apresentou o mesmo problema.
+Apenas mudei no formato hardcod.
+
+== Vídeo 4 - Flutter na prática todo list
+
+Ele explica a estrutura do arquivo da aplicação; 
+
+== Vídeo 5 - Flutter na prática todo list
+
+Ele explica como criar a página e como 
+estilzar a parte inicial, junto com a 
+localização  do Idioma.
+
+== Vídeo 6 - Flutter na prática todo list
+Ele mostra como criar os widgets e o modelos
+para começar a criar o app.
+
+== Vídeo 7 - Flutter na prática todo list
+Ele mostra como criar um componente padão, text_widget.
